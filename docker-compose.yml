@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  telegram-translator:
+    build: .
+    container_name: telegram-zh-vi-translator
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - GOOGLE_TRANSLATE_API_KEY=${GOOGLE_TRANSLATE_API_KEY}
+      - DEBUG=${DEBUG:-False}
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
